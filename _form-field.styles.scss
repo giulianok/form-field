@@ -1,0 +1,304 @@
+.sape-booking {
+    %invalid {
+        input, textarea, .select-custom {
+            border-color: $colorRed;
+        }
+
+        ng-messages {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            /*&.hiddeit {
+                display: none !important;
+                visibility: none !important;
+                opacity: 0 !important;
+            }*/
+        }
+    }
+
+    form-field,
+    .form-field {
+        & + a {
+            font-size: 14px;
+            margin: -5px 0 -10px 0;
+            font-weight: bold;
+        }
+    }
+
+    form-field {
+        float: left;
+        width: 100%;
+
+        &.small {
+            width: 50%;
+            clear: both;
+        }
+
+        ng-messages {
+            display: none;
+        }
+
+        .invalid {
+            @extend %invalid;
+        }
+    }
+
+    .form-field {
+        @extend .component;
+        margin: 10px 0;
+        font-size: 14px;
+
+        label {
+            font-weight: 400;
+        }
+
+        .field-wrapper,
+        sub-field,
+        & > ng-transclude {
+            float: left;
+        }
+
+        a {
+            font-weight: bold;
+        }
+
+        &, label, input, .select-custom, .error {
+            display: block;
+            float: left;
+        }
+
+        &, *:not(sub-field) {
+            clear: both;
+        }
+
+        &,
+        & > ng-transclude,
+        .field-wrapper,
+        label,
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="phone"],
+        .select-custom,
+        .error {
+            width: 100%;
+        }
+        // label {
+        //     margin-bottom: 8px;
+        // }
+        label.bold {
+            font-weight: bold;
+            color: $colorBlue;
+        }
+
+        a, span {
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        input, textarea {
+            color: $colorBlue;
+        }
+
+        input, .select-custom, textarea {
+            padding: 20px;
+            border: $colorBlue solid 1px;
+            font-weight: bold;
+
+            &, &:focus {
+                outline: none;
+            }
+
+            &:focus, &.focus {
+                @include box-shadow(0 0 0);
+                border-color: $colorBlueStar;
+            }
+        }
+
+
+        .select-custom {
+            padding: 0;
+            background-color: white;
+            color: $colorBlue;
+
+            select {
+                @include appearance(none);
+                @include border-radius(0);
+                z-index: 1;
+                width: 100%;
+                height: 59px;
+                padding: 19px;
+                line-height: 1;
+                background-color: transparent;
+                border: 0;
+                // IE 10
+                &::-ms-expand {
+                    display: none;
+                }
+
+                &.placeholder {
+                    color: $colorTextGrey;
+                }
+
+                option {
+                    color: $colorBlue;
+
+                    &.placeholder {
+                        color: $colorTextGrey;
+                    }
+                }
+            }
+
+            &:before, &:after {
+                display: block;
+                content: '';
+                position: absolute;
+            }
+
+            &:after {
+                z-index: 3;
+                width: 0;
+                height: 0;
+                top: 25px;
+                right: 20px;
+                border-style: solid;
+                border-width: 8px 6px 0 6px;
+                border-color: $colorBlue transparent transparent transparent;
+            }
+        }
+
+        button {
+            @extend .button;
+        }
+        /*====== NEW STYLE ======*/
+        [type="checkbox"] {
+            &:not(:checked),
+            &:checked {
+                position: absolute;
+                left: -9999px;
+            }
+
+            &:not(:checked) + label,
+            &:checked + label {
+                position: relative;
+                padding: 0 0 0 35px;
+                cursor: pointer;
+
+                span {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            & + label:before,
+            & + label:after {
+                position: absolute;
+                display: block;
+                content: '';
+                width: 24px;
+                height: 24px;
+                top: 50%;
+                left: 0;
+                margin-top: -12px;
+            }
+            /* checkbox aspect */
+            &:not(:checked) + label:before,
+            &:checked + label:before {
+                border: 1px solid $colorBlue;
+                background-color: lighten($colorBlue, 60%);
+            }
+            /* checked mark aspect */
+            &:not(:checked) + label:after,
+            &:checked + label:after {
+                @include transition(all 300ms ease);
+                background-image: url("/BookingEngine/app/Booking/images/icon-checkbox-mark.jpg");
+                background-size: cover;
+            }
+            /* checked mark aspect changes */
+            &:not(:checked) + label:after {
+                @include transform(scale(0));
+                opacity: 0;
+            }
+
+            &:checked + label:after {
+                @include transform(scale(1));
+                opacity: 1;
+            }
+            /* disabled checkbox */
+            &:disabled:not(:checked) + label:before,
+            &:disabled:checked + label:before {
+                box-shadow: none;
+                border-color: #bbb;
+                background-color: #ddd;
+            }
+
+            &:disabled:checked + label:after {
+                background-image: url("../assets/images/icon-checkbox-mark-disabled.jpg");
+            }
+
+            &:disabled + label {
+                color: #aaa;
+            }
+        }
+
+        .of {
+            display: inline-block;
+            padding-left: 15px;
+            line-height: 45px;
+            color: $colorBlue;
+
+            strong {
+                font-size: 1.3em;
+                font-weight: bold;
+                padding-left: 5px;
+            }
+        }
+        // Sub field (MULTPLE)
+        .form-field {
+            clear: none !important;
+            margin: 0;
+
+            &.field-month {
+                width: 45%;
+            }
+
+            &.field-day {
+                padding: 0 22px;
+            }
+
+            &.field-day,
+            &.field-year {
+                width: 27.5%;
+                text-align: center;
+            }
+        }
+    }
+    // end form-field
+    .dob-wrapper {
+        float: left;
+
+        & > .sape-tooltip-wrapper {
+            position: absolute;
+            right: -24px;
+            bottom: 32px;
+        }
+    }
+
+    .field-gender {
+        width: 45%;
+    }
+}
+
+// ** IE 9 ** /
+.lt-ie .sape-booking {
+    .select-custom {
+        &:before {
+            z-index: 2;
+            width: 40px;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: white;
+        }
+    }
+}

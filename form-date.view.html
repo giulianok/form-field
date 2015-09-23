@@ -1,0 +1,45 @@
+<div class="form-field" ng-class="{ invalid: hasBlurred && fieldIsInvalid }">
+
+    <label ng-if="label" for="{{id}}">{{label}}</label>
+
+    <div class="field-wrapper">
+
+        <div class="form-field field-month">
+            <div class="select-custom">
+                <select field-name="month"
+                        class="field-input"
+                        ng-class="{placeholder: newInputs['month'].placeholder && !form[newInputs['month'].model].$viewValue}"
+                        ng-blur="hasBlurredMonth = true"
+                        ng-options="option.value as option.text for option in  newInputs['month'].options">
+                    <option value="" ng-show="newInputs['month'].placeholder">{{ newInputs['month'].placeholder }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-field field-day">
+            <input class="field-input"
+                   type="text"
+                   field-name="day"
+                   maxlength="2"
+                   ng-blur="hasBlurredDay = true"
+                   placeholder="{{newInputs['day'].placeholder}}" />
+        </div>
+
+        <div class="form-field field-year">
+            <input class="field-input"
+                   type="text"
+                   field-name="year"
+                   maxlength="4"
+                   placeholder="{{newInputs['year'].placeholder}}"
+                   ng-blur="hasBlurredYear = true" />
+        </div>
+        
+        <input type="hidden" class="field-common" />
+
+        <ng-messages ng-if="hasBlurred" for="form[model].$error">
+            <ng-message ng-repeat="message in messages" when="{{message.when}}">{{message.value}}</ng-message>
+        </ng-messages>
+
+    </div>
+
+</div>

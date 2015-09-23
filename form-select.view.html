@@ -1,0 +1,28 @@
+<div class="form-field" ng-class="{ invalid: hasBlurred && isInvalid() }">
+
+    <label ng-if="label" for="{{_id}}">{{label}}</label>
+
+    <div class="field-wrapper">
+        <div class="select-custom" ng-class="{ focus: selectFocused }">
+            <select class="field-input" id="{{_id}}"
+                    ng-class="{placeholder: placeholder && !form[model].$viewValue}"
+                    ng-disabled="disabled"
+                    name="{{model}}"
+                    ng-focus="isInvalid(); selectFocused = true"
+                    ng-options="option.value as option.label for option in options"
+                    ng-blur="hasBlurred = true; isInvalid(); selectFocused = false">
+
+                <option ng-if="placeholder" ng-selected="placeholder" value="">{{placeholder}}</option>
+
+            </select>
+        </div>
+
+        <ng-messages ng-if="hasBlurred && messages" for="form[model].$error">
+            <ng-message ng-repeat="message in messages" when="{{ message.when }}">{{ message.value }}</ng-message>
+        </ng-messages>
+
+    </div>
+
+
+
+</div>

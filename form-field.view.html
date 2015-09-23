@@ -1,0 +1,21 @@
+<div class="form-field" ng-class="{ invalid: hasBlurred && isInvalid() }">
+
+    <label ng-if="label" for="{{_id}}">{{label}}</label>
+
+    <div class="field-wrapper">
+        <input class="field-input"
+               type="{{type}}"
+               ng-disabled="disabled"
+               id="{{_id}}"
+               placeholder="{{placeholder}}"
+               ng-blur="hasBlurred = true; isInvalid()"
+               ng-keyup="isInvalid()">
+
+        <ng-messages ng-if="hasBlurred && messages" for="form[model].$error">
+            <ng-message ng-repeat="message in messages" when="{{ message.when }}">{{ message.value }}</ng-message>
+        </ng-messages>
+
+    </div>
+
+</div>
+

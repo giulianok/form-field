@@ -1,0 +1,133 @@
+<!-- First Name -->
+<form-field type="text"
+            id="guestinfo_firstname"
+            model="guest.guestFirstName"
+            label="@Html.GetStringResource("FirstName")"
+            placeholder="@Html.GetStringResource("FirstName")"
+            maxlength="10"
+            validate="{
+            required: {
+            value: '@Html.GetStringResource("FirstNameRequiredValidation")'
+            },
+            alpha: {
+            value: '@Html.GetStringResource("FirstNamePatternValidation")'
+            }
+            }"></form-field>
+
+<form-field ng-if="!showCurrentlyLoggedBanner()"
+          type="text"
+          id="emailAddress"
+          model="guest.emailAddress"
+          label="@Html.GetStringResource("Email")"
+          placeholder="@Html.GetStringResource("Email")"
+          validate="{
+          required: {
+          value: '@Html.GetStringResource("EmailRequiredValidation")'
+          },
+          email: {
+          value: '@Html.GetStringResource("EmailPatternValidation")'
+          }
+          }"></form-field>
+
+<div class="dob-wrapper">
+      <form-field type="date"
+                label="@Html.GetStringResource("DateOfBirth")"
+                month="{
+            type: 'select',
+                        model: 'guest.dobMonth',
+                        placeholder: 'Month',
+                        options: [
+                              {
+                                    value: 1,
+                                    text: 'January'
+                              },
+                              {
+                                    value: 2,
+                                    text: 'February'
+                              },
+                              {
+                                    value: 3,
+                                    text: 'March'
+                              },
+                {
+                                    value: 4,
+                                    text: 'April'
+                              },
+                              {
+                                    value: 5,
+                                    text: 'May'
+                              },
+                              {
+                                    value: 6,
+                                    text: 'June'
+                              },
+                {
+                                    value: 7,
+                                    text: 'July'
+                              },
+                              {
+                                    value: 8,
+                                    text: 'August'
+                              },
+                              {
+                                    value: 9,
+                                    text: 'September'
+                              },
+                {
+                                    value: 10,
+                                    text: 'October'
+                              },
+                              {
+                                    value: 11,
+                                    text: 'November'
+                              },
+                              {
+                                    value: 12,
+                                    text: 'December'
+                              }
+                        ]
+          }"
+                day="{
+            type: 'text',
+                        model: 'guest.dobDay',
+                        placeholder: 'DD'
+          }"
+                year="{
+            type: 'text',
+                        model: 'guest.dobYear',
+                        placeholder: 'YYYY'
+          }"
+                validate="{
+                required: {
+                value: '@Html.GetStringResource("DateOfBirthInvalidDate")'
+                },
+                invalid: {
+                value: '@Html.GetStringResource("DateOfBirthInvalidDate")'
+                },
+                underage: {
+                value: '@Html.GetStringResource("DateOfBirthUnderage")' ,
+                age: 21
+                }
+                }"></form-field>
+      <i class="icon question" sape-tooltip tooltip-type="info" tooltip-label="@Html.GetStringResource("OffersToolTip")" tooltip-showonclick="true">
+        <img src="/BookingEngine/app/Booking/images/icon-question.png" />
+      </i>
+</div>
+
+
+
+<form-field type="phone"
+            ng-if="guest.countryCode == 'US' || guest.countryCode == 'CA'"
+            id="guestinfo_phone"
+            model="guest.phoneNumber"
+            label="@Html.GetStringResource("PhoneNumber")"
+            placeholder="@Html.GetStringResource("PhoneNumber")"
+            country-code="US"
+            validate="{
+            required: {
+            value: '@Html.GetStringResource("PhoneNumberRequiredValidation")'
+            },
+            invalid: {
+            value: '@Html.GetStringResource("PhoneNumberPatternValidation")'
+            }
+            }"></form-field>
